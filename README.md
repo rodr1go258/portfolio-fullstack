@@ -8,7 +8,7 @@ Portafolio personal con **React + Vite** (frontend), **Express + Node.js** (back
 
 Repositorio: https://github.com/rodr1go258/portfolio-fullstack
 
-> Tu usuario de GitHub es `rodr1go258` (con "o"); tu usuario de Docker Hub es `rodr1g0258` (con cero).
+> Tu usuario de GitHub y de Docker Hub es `rodr1go258` (con "o").
 
 ## Estructura del proyecto
 
@@ -70,8 +70,8 @@ Total: **9 tests** (3 unitarios + 3 de integración + 3 E2E).
 ## 3. Ejecutar con Docker
 
 ```powershell
-docker build -t rodr1g0258/portfolio-backend:latest ./backend
-docker build -t rodr1g0258/portfolio-frontend:latest ./frontend
+docker build -t rodr1go258/portfolio-backend:latest ./backend
+docker build -t rodr1go258/portfolio-frontend:latest ./frontend
 docker compose up -d
 docker compose ps
 ```
@@ -117,7 +117,7 @@ En GitHub → *Settings → Secrets and variables → Actions → New repository
 
 | Secret | Uso |
 |---|---|
-| `DOCKERHUB_TOKEN` | Subir las imágenes a Docker Hub (`rodr1g0258`) |
+| `DOCKERHUB_TOKEN` | Subir las imágenes a Docker Hub (`rodr1go258`) |
 | `AWS_ACCESS_KEY_ID` | Crear la VPC, subnets y VM con Terraform |
 | `AWS_SECRET_ACCESS_KEY` | Credencial AWS |
 | `AWS_REGION` | Región de la VM (por ejemplo `us-east-1`) |
@@ -144,7 +144,7 @@ Ansible instala Docker y Git, habilita ufw e iptables en los puertos 80 y 443, c
 
 ```powershell
 ansible-playbook -i inventory.ini ansible/playbook.yml `
-  -e dockerhub_username=rodr1g0258 `
+  -e dockerhub_username=rodr1go258 `
   -e dockerhub_token="$env:DOCKERHUB_TOKEN" `
   -e image_tag=latest
 ```

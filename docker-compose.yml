@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: ${DOCKERHUB_USERNAME:-rodr1g0258}/portfolio-backend:${IMAGE_TAG:-latest}
+    image: ${DOCKERHUB_USERNAME:-rodr1go258}/portfolio-backend:${IMAGE_TAG:-latest}
     container_name: portfolio-backend
     depends_on:
       db:
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ${DOCKERHUB_USERNAME:-rodr1g0258}/portfolio-frontend:${IMAGE_TAG:-latest}
+    image: ${DOCKERHUB_USERNAME:-rodr1go258}/portfolio-frontend:${IMAGE_TAG:-latest}
     container_name: portfolio-frontend
     depends_on:
       - backend

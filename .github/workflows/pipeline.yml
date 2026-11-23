@@ -61,7 +61,7 @@ jobs:
         if: env.DOCKERHUB_TOKEN != ''
         uses: docker/login-action@v3
         with:
-          username: rodr1g0258
+          username: rodr1go258
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Construir y subir imagen del backend
@@ -71,8 +71,8 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            rodr1g0258/portfolio-backend:latest
-            rodr1g0258/portfolio-backend:${{ github.sha }}
+            rodr1go258/portfolio-backend:latest
+            rodr1go258/portfolio-backend:${{ github.sha }}
 
       - name: Construir y subir imagen del frontend
         if: env.DOCKERHUB_TOKEN != ''
@@ -81,8 +81,8 @@ jobs:
           context: ./frontend
           push: true
           tags: |
-            rodr1g0258/portfolio-frontend:latest
-            rodr1g0258/portfolio-frontend:${{ github.sha }}
+            rodr1go258/portfolio-frontend:latest
+            rodr1go258/portfolio-frontend:${{ github.sha }}
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -157,6 +157,6 @@ jobs:
           ANSIBLE_HOST_KEY_CHECKING: "false"
         run: |
           ansible-playbook -i inventory.ini ansible/playbook.yml \
-            -e dockerhub_username=rodr1g0258 \
+            -e dockerhub_username=rodr1go258 \
             -e dockerhub_token='${{ secrets.DOCKERHUB_TOKEN }}' \
             -e image_tag='${{ github.sha }}'
