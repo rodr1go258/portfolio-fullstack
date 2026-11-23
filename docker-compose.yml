@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: portfolio-db
+    environment:
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_DB: portfolio
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio -d portfolio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    image: ${DOCKERHUB_USERNAME:-rodr1g0258}/portfolio-backend:${IMAGE_TAG:-latest}
+    container_name: portfolio-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgres://portfolio:portfolio@db:5432/portfolio
+    expose:
+      - "3001"
+    restart: unless-stopped
+
+  frontend:
+    image: ${DOCKERHUB_USERNAME:-rodr1g0258}/portfolio-frontend:${IMAGE_TAG:-latest}
+    container_name: portfolio-frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  db_data:
